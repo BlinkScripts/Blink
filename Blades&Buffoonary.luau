@@ -263,6 +263,12 @@ local Window = Rayfield:CreateWindow({
 
     DisableBuildWarnings = true,
 
+    Discord = {
+        Enabled = true,
+        Invite = "https://discord.gg/g9a5besaD6",
+        RememberJoins = true
+    },
+
     ConfigurationSaving = {
         Enabled = false,
         FolderName = nil, -- Create a custom folder for your hub/game
