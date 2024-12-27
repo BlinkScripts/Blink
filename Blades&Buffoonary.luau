@@ -185,21 +185,21 @@ end
 local function ToggleKillaura(NewValue : boolean)
     while Toggles.Killaura.CurrentValue == true do
         for _,Player in Players:GetPlayers() do
-            task.spawn(function()
-                if  Player ~= Client 
-                and Player.Character 
-                and Player.Character:FindFirstChild("Humanoid")
-                and Player.Character:FindFirstChild("HumanoidRootPart") 
-                and Player.Character.Humanoid.Health > 0
-                and Humanoid
-                and Humanoid.Health > 0 then
-                    local Distance = Client:DistanceFromCharacter(Player.Character:FindFirstChild("HumanoidRootPart").Position)
-
-                    if Distance <= 100 and GetCurrentWeaponObject() ~= false then
+            if  Player ~= Client 
+            and Player.Character 
+            and Player.Character:FindFirstChild("Humanoid")
+            and Player.Character:FindFirstChild("HumanoidRootPart") 
+            and Player.Character.Humanoid.Health > 0
+            and Humanoid
+            and Humanoid.Health > 0 then
+                local Distance = Client:DistanceFromCharacter(Player.Character:FindFirstChild("HumanoidRootPart").Position)
+                
+                if Distance <= 100 and GetCurrentWeaponObject() ~= false then
+                    pcall(function()
                         GetCurrentWeaponObject().Events.Hit:FireServer(Player.Character.Humanoid)
-                    end
+                    end)
                 end
-            end)
+            end
         end
         task.wait()
     end
